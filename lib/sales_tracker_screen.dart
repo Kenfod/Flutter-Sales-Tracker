@@ -57,9 +57,10 @@
 
 
 
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously, dead_code, empty_statements, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'api_service.dart';
 
 class SalesTrackerScreen extends StatefulWidget {
   const SalesTrackerScreen({super.key});
@@ -69,6 +70,9 @@ class SalesTrackerScreen extends StatefulWidget {
 }
 
 class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
+  final ApiService apiService = ApiService();
+  List<dynamic> sales = [];
+
   String currentUsername = "John Doe"; // Replace with the actual username
   String currentLocalTime = "10-06-2024 14:30"; // Replace with actual local time
   double cumulativeSales = 100000.0; // Replace with actual cumulative sales
@@ -86,6 +90,25 @@ class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
   double? productPrice;
   int? productQuantity;
 
+  @override
+  void initState() {
+    super.initState();
+    _fetchSales();
+  }
+
+  void _fetchSales() async {
+    try {
+      final salesData = await apiService.fetchSales();
+      setState(() {
+        sales = salesData;
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Error: $e'),
+      ));
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -187,10 +210,11 @@ class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
               ),
               const Divider(),
               const Text("Sales Records", style: TextStyle(fontSize: 20)),
+
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: DataTable(
-                columns: const [
+                columns: [
                   DataColumn(label: Text('User Name')),
                   DataColumn(label: Text('Customer Name')),
                   DataColumn(label: Text('Product Name')),
@@ -199,29 +223,29 @@ class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
                   DataColumn(label: Text('Total Sale')),
                   DataColumn(label: Text('Date')),
                   DataColumn(label: Text('Actions')),
-                ],
-                rows: [
-                  // Replace this with actual sales data
-                  DataRow(cells: [
-                    const DataCell(Text('John Doe')),
-                    const DataCell(Text('Customer1')),
-                    const DataCell(Text('Product1')),
-                    const DataCell(Text('100.0')),
-                    const DataCell(Text('2')),
-                    const DataCell(Text('200.0')),
-                    const DataCell(Text('10-06-2024 14:30')),
-                    DataCell(
-                      Row(
-                        children: [
-                          TextButton(onPressed: () {}, child: const Text('Edit')),
-                          TextButton(onPressed: () {}, child: const Text('Delete', style: TextStyle(color: Colors.red))),
-                        ],
+                  ],
+                  rows: sales.map((sale) {
+                    return DataRow(cells: [
+                      DataCell(Text(sale['userName'] ?? '')),
+                      DataCell(Text(sale['customerName'] ?? '')),
+                      DataCell(Text(sale['productName'] ?? '')),
+                      DataCell(Text(sale['productPrice'].toString())),
+                      DataCell(Text(sale['productQuantity'].toString())),
+                      DataCell(Text(sale['totalSale'].toString())),
+                      DataCell(Text(sale['date'] ?? '')),
+                        DataCell(
+                          Row(
+                          children: [
+                            TextButton(onPressed: () {}, child: Text('Edit')),
+                            TextButton(onPressed: () {}, child: Text('Delete', style: TextStyle(color: Colors.red))),
+                          ],
+                        ),
                       ),
-                    ),
-                  ]),
-                ],
+                    ]);
+                  }).toList(),
+                ),
               ),
-          )],
+            ],
           ),
         ),
       ),
@@ -235,7 +259,6 @@ class Product {
 
   Product({required this.name, required this.price});
 }
-
 
 
 
