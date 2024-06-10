@@ -108,6 +108,7 @@ class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
         ],
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -186,7 +187,9 @@ class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
               ),
               const Divider(),
               const Text("Sales Records", style: TextStyle(fontSize: 20)),
-              DataTable(
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
                 columns: const [
                   DataColumn(label: Text('User Name')),
                   DataColumn(label: Text('Customer Name')),
@@ -218,7 +221,7 @@ class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
                   ]),
                 ],
               ),
-            ],
+          )],
           ),
         ),
       ),
@@ -232,3 +235,15 @@ class Product {
 
   Product({required this.name, required this.price});
 }
+
+
+
+
+
+
+
+
+
+
+
+

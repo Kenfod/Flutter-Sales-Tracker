@@ -1,11 +1,50 @@
+// ignore_for_file: library_private_types_in_public_api, unused_element, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-
+import 'api_service.dart';
 import 'sales_tracker_screen.dart';
-// import 'register_screen.dart';
-// import 'sales_tracker_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final ApiService apiService = ApiService();
+
+  void _login() async {
+    try {
+      final response = await apiService.login(
+        _usernameController.text,
+        _passwordController.text,
+      );
+
+      if (response['status'] == 'success') {
+        Navigator.pushNamed(context, '/salesTracker');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Login failed'),
+        ));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Error: $e'),
+      ));
+    }
+  }
+
+
+
+
+
+
+// class LoginScreen extends StatelessWidget {
+//   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,21 +92,14 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                // onPressed: () {
-                //   Navigator.pushNamed(context, '/sales_tracker');
-                //     },
-                    
+              child: ElevatedButton(    
                 onPressed: () {
                   Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const SalesTrackerScreen()),
                    );
-              },
-                  // child: const Text('Go to Sales Tracker'),
-                  // Handle login logic here
-
-                    child: const Text(
+                  },
+                  child: const Text(
                   'Login',
                   style: TextStyle(fontSize: 18),
                   
@@ -132,3 +164,8 @@ class LoginScreen extends StatelessWidget {
 //     );
 //   }
 // }
+
+
+
+
+

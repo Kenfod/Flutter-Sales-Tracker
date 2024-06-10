@@ -16,7 +16,9 @@ class SalesTrackerApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,  // hide debug banner
       title: 'Jipange Sales Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        colorScheme: ColorScheme.fromSwatch().copyWith(primary: const Color.fromRGBO(37, 150, 190, 1)),  // Set primary color
+        useMaterial3: false,  // Enable Material 3 design elements
+        // primarySwatch: Colors.green,
       ),
       initialRoute: '/login',
       routes: {
