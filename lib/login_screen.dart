@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'sales_tracker_screen.dart';
+// import 'register_screen.dart';
+// import 'sales_tracker_screen.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -50,12 +54,23 @@ class LoginScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
+                // onPressed: () {
+                //   Navigator.pushNamed(context, '/sales_tracker');
+                //     },
+                    
                 onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SalesTrackerScreen()),
+                   );
+              },
+                  // child: const Text('Go to Sales Tracker'),
                   // Handle login logic here
-                },
-                child: const Text(
+
+                    child: const Text(
                   'Login',
                   style: TextStyle(fontSize: 18),
+                  
                 ),
               ),
             ),
@@ -75,3 +90,45 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+
+// class LoginScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Login'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Text('Login Screen'),
+//             ElevatedButton(
+//               onPressed: () {
+//                 Navigator.pushNamed(context, '/register');
+//               },
+//               child: Text('Go to Register'),
+//             ),
+//             ElevatedButton(
+//               onPressed: () {
+//                 Navigator.pushNamed(context, '/sales_tracker');
+//               },
+//               child: Text('Go to Sales Tracker'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
