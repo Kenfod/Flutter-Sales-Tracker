@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'api_service.dart';
 import 'sales_tracker_screen.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -38,18 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-
-
-
-
-
-// class LoginScreen extends StatelessWidget {
-//   const LoginScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset('assets/logo.png'),
+        ),
         title: const Text('JIPANGE SALES TRACKER - Smart Sales!!'),
       ),
       body: Padding(
@@ -57,12 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(
-              child: Image(
-                image: AssetImage('assets/logo.png'),
-                height: 100,
-              ),
-            ),
             const SizedBox(height: 20),
             const Text(
               'Login',
@@ -135,28 +124,30 @@ class _LoginScreenState extends State<LoginScreen> {
 // import 'package:flutter/material.dart';
 
 // class LoginScreen extends StatelessWidget {
+//   const LoginScreen({super.key});
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
 //       appBar: AppBar(
-//         title: Text('Login'),
+//         title: const Text('Login'),
 //       ),
 //       body: Center(
 //         child: Column(
 //           mainAxisAlignment: MainAxisAlignment.center,
 //           children: <Widget>[
-//             Text('Login Screen'),
+//             const Text('Login Screen'),
 //             ElevatedButton(
 //               onPressed: () {
 //                 Navigator.pushNamed(context, '/register');
 //               },
-//               child: Text('Go to Register'),
+//               child: const Text('Go to Register'),
 //             ),
 //             ElevatedButton(
 //               onPressed: () {
 //                 Navigator.pushNamed(context, '/sales_tracker');
 //               },
-//               child: Text('Go to Sales Tracker'),
+//               child: const Text('Go to Sales Tracker'),
 //             ),
 //           ],
 //         ),

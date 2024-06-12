@@ -273,12 +273,12 @@ class _SalesTrackerScreenState extends State<SalesTrackerScreen> {
                     scrollDirection: Axis.horizontal,
                     child: DataTable(
                       columns: const [
-                        DataColumn(label: Text('Customer Name')),
-                        DataColumn(label: Text('Product Name')),
-                        DataColumn(label: Text('Product Price')),
-                        DataColumn(label: Text('Product Quantity')),
+                        DataColumn(label: Text('Customer')),
+                        DataColumn(label: Text('Product')),
+                        DataColumn(label: Text('Price')),
+                        DataColumn(label: Text('Quantity')),
                         DataColumn(label: Text('Total Sale')),
-                        DataColumn(label: Text('Date')),
+                        DataColumn(label: Text('Date & Time')),
                       ],
                       rows: sales.map((sale) {
                         double productPrice = sale['product_price'] ?? 0.0;
