@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'api_service.dart';
-import 'sales_tracker_screen.dart';
+import 'sales_record_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SalesTrackerScreen()),
+                  MaterialPageRoute(builder: (context) => const SalesRecordScreen()),
                    );
                   },
                   child: const Text(

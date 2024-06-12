@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
  import 'login_screen.dart';
  import 'register_screen.dart';
-import 'sales_tracker_screen.dart';
+import 'sales_record_screen.dart';
 
 void main() {
   runApp(const SalesTrackerApp());
@@ -24,7 +24,7 @@ class SalesTrackerApp extends StatelessWidget {
       routes: {
          '/login': (context) => const LoginScreen(),
          '/register': (context) => const RegisterScreen(),
-         '/sales': (context) => const SalesTrackerScreen(),
+         '/sales': (context) => const SalesRecordScreen(),
       },
     );
   }
