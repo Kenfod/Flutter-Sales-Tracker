@@ -6,23 +6,19 @@ import 'sales_record_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final ApiService apiService = ApiService();
-
   void _login() async {
     try {
       final response = await apiService.login(
         _usernameController.text,
         _passwordController.text,
       );
-
       if (response['status'] == 'success') {
         Navigator.pushNamed(context, '/salesTracker');
       } else {
@@ -36,7 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ));
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,52 +106,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-// import 'package:flutter/material.dart';
-
-// class LoginScreen extends StatelessWidget {
-//   const LoginScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Login'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             const Text('Login Screen'),
-//             ElevatedButton(
-//               onPressed: () {
-//                 Navigator.pushNamed(context, '/register');
-//               },
-//               child: const Text('Go to Register'),
-//             ),
-//             ElevatedButton(
-//               onPressed: () {
-//                 Navigator.pushNamed(context, '/sales_tracker');
-//               },
-//               child: const Text('Go to Sales Tracker'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
 
 
 

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
  import 'login_screen.dart';
  import 'register_screen.dart';
@@ -24,19 +26,10 @@ class SalesTrackerApp extends StatelessWidget {
       routes: {
          '/login': (context) => const LoginScreen(),
          '/register': (context) => const RegisterScreen(),
-         '/sales': (context) => const SalesRecordScreen(),
+         '/sales': (context) => SalesRecordScreen(),
       },
     );
   }
+  
+  SalesRecordScreen() {}
 }
-
-
-
-
-
-
-
-
-
-
-
